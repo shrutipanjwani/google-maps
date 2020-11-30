@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html Lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Google maps Web App</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		#map{
+			height: 400px;
+			width: 100%;
+		}
+	</style>
+</head>
+	<body>
+		<h1>My Google Map</h1>
+		<div id="map"></div>
+		<script>
+			function initMap() {
+				var options = {
+					zoom:8,
+					center: {lat:21.0972, lng:-81.0338}
+				}
+				// New Map
+				var map = new 
+				google.maps.Map(document.getElementById('map'), options);
+
+				/*//Add Marker
+				var marker = new google.maps.Marker({
+					position:{lat:21.2514, lng:-81.6296},
+					map:map,
+					icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+				});
+
+				var infoWindow = new google.maps.InfoWindow({
+					content: '<h1>Raipur</h1>'
+				});
+
+				marker.addListener('click', function () {
+					infoWindow.open(map, marker);
+				});*/
+
+				var markers = [
+					{
+						coords:{lat:21.2514, lng:-81.6296},
+						iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+						content: '<h1>Raipur</h1>'
+					},
+
+					{
+						coords:{lat:42.8584, lng:-70.9300},
+						content: '<h1>Raipur</h1>'
+					},
+
+					{
+						coords:{lat:42.7762, lng:-71.0773},
+					}
+
+				];
+
+				//Loop through markers
+				for (var i = 0; i < markers.length; i++) {
+					addMarker(markers[i]);
+				}
+
+				// ADD marker function
+				function addMarker(coords) {
+					var marker = new google.maps.Marker({
+						position: props.coords,
+						map:map,
+						//icon:props.iconImage
+					});
+
+					//Check for custom icon
+					if (props.iconImage) {
+						marker.setIcon(props.iconImage);
+					}
+
+					//Check content
+					if (props.content) {
+						var infoWindow = new google.maps.InfoWindow({
+							content: props.content
+						});
+
+						marker.addListener('click', function () {
+							infoWindow.open(map, marker);
+						});
+					}
+				}
+			}
+		</script>
+
+		<script async defer
+	      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAma65lFL3TZqdqwLMwWYqI9l1c2iVZdeU&callback=initMap">
+	    </script>
+	</body>
+</html>
